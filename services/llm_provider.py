@@ -1,16 +1,6 @@
-from utils.config import load_enviroment
-from services.gemini_service import GeminiAIService
-from services.mock_service import MockService
+from abc import ABC, abstractmethod
 
-# Cargamos las variables de entorno
-config = load_enviroment()
-
-LLM = config.get("LLM","gemini")
-
-GEMINI_API_KEY = config.get("GEMINI_API_KEY")
-
-def get_llm_provider ():
-  if LLM == "gemini":
-    return GeminiAIService(api_key=GEMINI_API_KEY)
-  elif LLM == "mock":
-    return MockService()
+class LLMProvider(ABC):
+    @abstractmethod
+    def generate_response(self, text: str) -> dict:
+        pass

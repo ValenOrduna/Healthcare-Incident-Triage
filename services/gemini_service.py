@@ -4,10 +4,11 @@ import json
 from uuid import uuid4
 from models.incidents import IncidentResponse
 from exceptions.service_exceptions import PromptError,GeminiError
+from services.llm_provider import LLMProvider
 
 
 # Clase encargada de controlar y efectuar la conexion de Gemini
-class GeminiAIService() :
+class GeminiAIService(LLMProvider) :
   def __init__(self,api_key:str):
     # Extraemos el entrenamiento del modelo de un archivo TXT
     try:

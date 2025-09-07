@@ -1,7 +1,8 @@
 from uuid import uuid4
 from random import randint
+from services.llm_provider import LLMProvider
 
-class MockService () :
+class MockService (LLMProvider) :
   
   def generate_response (self,text:str) -> dict:
     
