@@ -1,6 +1,6 @@
 from fastapi import FastAPI,Response ,HTTPException,status
 from models.incidents import IncidentRequest
-from services.gemini_service import GeminiAIService
+from services.llm_provider import get_llm_provider
 from models.incidents import IncidentResponse
 import structlog
 from config.logging_config import setup_logging
@@ -16,7 +16,7 @@ app = FastAPI(title="Healthcare Incident Triage",description="Ejercicio de Xooli
 
 # Inicializamos la IA
 try:
-    ai_service = GeminiAIService() 
+    ai_service = get_llm_provider()
 except PromptError as e:
     logger.critical("Iniciar modelo", razon=str(e))
   
@@ -29,7 +29,7 @@ def get_health_status () -> dict:
   return {"status":"ok"}
 
 # Ruta para subir incidentes 
-@app.post("/incidents", tags=["Incidentes"])
+@app.post("/incidents", tags=["Incidentes"],status_code=status.HTTP_201_CREATED)
 def create_incident (body:IncidentRequest) -> dict:
 
   incident_request = body.texto

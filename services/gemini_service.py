@@ -1,21 +1,14 @@
 from google import genai
 from google.genai import types
-from dotenv import load_dotenv,dotenv_values
 import json
 from uuid import uuid4
 from models.incidents import IncidentResponse
 from exceptions.service_exceptions import PromptError,GeminiError
 
-# Cargamos las variables de entorno
-load_dotenv()
-
-config = dotenv_values(".env")
-
-GEMINI_API_KEY = config.get("GEMINI_API_KEY")
 
 # Clase encargada de controlar y efectuar la conexion de Gemini
 class GeminiAIService() :
-  def __init__(self):
+  def __init__(self,api_key:str):
     # Extraemos el entrenamiento del modelo de un archivo TXT
     try:
       with open("./prompts/prompt.txt","r") as prompt:
@@ -25,7 +18,7 @@ class GeminiAIService() :
     except Exception:
         raise PromptError(f"Ocurrió un error inesperado al leer el prompt")
     
-    self.__client = genai.Client(api_key=GEMINI_API_KEY)
+    self.__client = genai.Client(api_key=api_key)
     
     self.__model = 'gemini-2.5-pro'
     
