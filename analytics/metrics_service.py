@@ -16,7 +16,7 @@ class MetricsService () :
       counts[name] = counts.get(property, 0) + 1
     
     for key, value in counts.items():
-      percentage = value / self.__total_incidents * 100
+      percentage = round(value / self.__total_incidents * 100,1)
       summary.append({property:key,"cantidad":value,"porcentaje":percentage})
     
     return summary

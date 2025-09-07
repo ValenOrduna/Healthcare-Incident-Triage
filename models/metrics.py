@@ -4,12 +4,12 @@ from typing import List
 class CategorySummary (BaseModel) :
   categoria:str
   cantidad:int
-  porcentaje:int
+  porcentaje:float
   
 class PrioritySummary (BaseModel):
   prioridad:int
   cantidad:int
-  porcentaje:int
+  porcentaje:float
   
 class MetricsResponse (BaseModel):
   total_incidencias:int

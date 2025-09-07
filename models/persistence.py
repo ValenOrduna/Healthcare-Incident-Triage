@@ -1,6 +1,7 @@
 import pandas as pd
 from pandas.errors import EmptyDataError
 from pathlib import Path
+import os
 
 class Csv () :
   def __init__ (self,folder:str = "data",file:str = "incidents.csv"):
@@ -12,7 +13,7 @@ class Csv () :
   def _create_if_not_exists(self):
       self.__data_folder.mkdir(exist_ok=True)
         
-      if not self.__incidents_file_path.exists():
+      if not self.__incidents_file_path.exists() or os.path.getsize(self.__incidents_file_path) == 0:
           columnas = ["id", "texto_original", "categoria", "prioridad", "resumen", "entidades"]
           df = pd.DataFrame(columns=columnas)
           df.to_csv(self.__incidents_file_path, index=False)
@@ -21,7 +22,7 @@ class Csv () :
   def add_incident (self,incident):
     
     data_incidents = pd.DataFrame([incident])
-
+      
     data_incidents.to_csv(
         self.__incidents_file_path,  
         mode='a',     
