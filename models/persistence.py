@@ -1,8 +1,6 @@
 import pandas as pd
 from pandas.errors import EmptyDataError
 from pathlib import Path
-import os
-import json
 
 class Csv () :
   def __init__ (self,folder:str = "data",file:str = "incidents.csv"):
