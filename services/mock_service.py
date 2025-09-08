@@ -8,7 +8,7 @@ class MockService (LLMProvider) :
     incident = {
       "id":f"inc_{uuid4()}",
       "texto_original":text,
-      "categoria":"sistema_imagenes | sistema_laboratorio | agenda_turnos | facturacion | acceso_pacientes | infraestructura_it | otra",
+      "categoria":"sistema_imagenes",
       "prioridad":1,
       "resumen": f"Resumen breve de la incidencia: {text}",
       "entidades": [
