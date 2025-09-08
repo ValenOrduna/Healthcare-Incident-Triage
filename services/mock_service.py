@@ -9,7 +9,7 @@ class MockService (LLMProvider) :
       "id":f"inc_{uuid4()}",
       "texto_original":text,
       "categoria":"sistema_imagenes",
-      "prioridad":1,
+      "prioridad":3,
       "resumen": f"Resumen breve de la incidencia: {text}",
       "entidades": [
         { "tipo": "sintoma | sistema | modalidad | sede | ubicacion | analisis | resultado | obra_social | accion | dispositivo | area | ...", 
