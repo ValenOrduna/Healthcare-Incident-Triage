@@ -13,7 +13,7 @@ class MetricsService () :
     
     for incident in self.__incidents:
       name = incident[property]
-      counts[name] = counts.get(property, 0) + 1
+      counts[name] = counts.get(name, 0) + 1
     
     for key, value in counts.items():
       percentage = round(value / self.__total_incidents * 100,1)

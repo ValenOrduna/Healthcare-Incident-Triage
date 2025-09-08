@@ -6,4 +6,4 @@ __pycache__/
 *.log
 .idea/
 .vscode/
-
+.pytest_cache/

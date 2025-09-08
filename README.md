@@ -38,45 +38,49 @@ Sigue estos pasos para levantar el proyecto en tu máquina local.
 
 ### **2. Instalación**
 
-1.  **Clona el repositorio:**
+1. **Clona el repositorio:**
 
-    ```bash
-    git clone https://github.com/ValenOrduna/Healthcare-Incident-Triage.git
+   ```bash
+   git clone https://github.com/ValenOrduna/Healthcare-Incident-Triage.git
 
-    cd Healthcare-Incident-Triage
-    ```
 
-2.  **Crea y activa un entorno virtual:**
+   cd Healthcare-Incident-Triage
+   ```
 
-    ```bash
-    # En macOS/Linux
-    python3 -m venv venv
-    source venv/bin/activate
+2. **Crea y activa un entorno virtual:**
 
-    # En Windows
-    python -m venv venv
-    .\venv\Scripts\activate
-    ```
+   ```bash
+   # En macOS/Linux
+   python3 -m venv venv
+   source venv/bin/activate
 
-3.  **Instala las dependencias:**
 
-    ```bash
-    pip install -r requirements.txt
-    ```
+   # En Windows
+   python -m venv venv
+   .\venv\Scripts\activate
+   ```
 
-4.  **Configura las variables de entorno:**
-    Crea un archivo `.env` en la raíz del proyecto y añade las siguientes claves.
+3. **Instala las dependencias:**
 
-    ```ini
-    # Clave secreta para proteger los endpoints
-    SECRET_API_KEY="tu_clave_secreta"
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-    # Tu clave de API para Google Gemini
-    GEMINI_API_KEY="tu_api_key_de_gemini"
+4. **Configura las variables de entorno:**
+   Crea un archivo `.env` en la raíz del proyecto y añade las siguientes claves.
 
-    # Define el proveedor de IA a usar: "gemini" (real) o "mock" (para tests)
-    LLM_PROVIDER="gemini"
-    ```
+   ```ini
+   # Clave secreta para proteger los endpoints
+   SECRET_API_KEY="tu_clave_secreta"
+
+
+   # Tu clave de API para Google Gemini
+   GEMINI_API_KEY="tu_api_key_de_gemini"
+
+
+   # Define el proveedor de IA a usar: "gemini" (real) o "mock" (para tests)
+   LLM_PROVIDER="gemini"
+   ```
 
 ### **3. Ejecución**
 
@@ -94,10 +98,19 @@ Para correr la suite de tests automatizados:
 pytest
 ```
 
+## 📡 Endpoints de la API
+
+| Endpoint     | Método | Descripción                                          | Auth Requerida |
+| :----------- | :----- | :--------------------------------------------------- | :------------- |
+| `/health`    | `GET`  | Verifica que el servicio esté funcionando.           | No             |
+| `/incidents` | `POST` | Procesa y clasifica una nueva incidencia.            | Sí             |
+| `/incidents` | `GET`  | Obtiene la lista de incidencias (permite filtros).   | Sí             |
+| `/metrics`   | `GET`  | Devuelve un resumen con métricas de las incidencias. | Sí             |
+
 ## 📚 Documentación y Uso de la API
 
 Con el servidor corriendo, la documentación interactiva OpenAPI (generada por FastAPI) está disponible en:
 
-    http://127.0.0.1:8000/docs
+http://127.0.0.1:8000/docs
 
 Desde esa URL puedes explorar y probar todos los endpoints. Recuerda que las rutas protegidas requieren un encabezado X-API-Key con el valor de tu SECRET_API_KEY.
